@@ -11,4 +11,15 @@ const URL_BACKEND = "/api/v1/user/register";
              }
     return axios.post(URL_BACKEND,data);
 }
- export {callRegister}
+
+const callLogin = (username, password, delay) =>{
+    const URL_BACKEND = "/api/v1/auth/login";
+    const data = {
+        username:username,
+        password:password,
+        delay: delay
+                 }
+        return axios.post(URL_BACKEND,data,5000);
+    }
+
+ export {callRegister,callLogin}

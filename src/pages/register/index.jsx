@@ -21,7 +21,7 @@ const RegisterPage = () => {
     if(res.data){
       notification.success({
        message: "Register user",
-          description: "Đăng ký tài khoản thành công "
+      description: "Đăng ký tài khoản thành công "
       });
       navigate("/login");
     }else{

@@ -3,12 +3,26 @@ import { Divider } from "antd";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { callRegister } from "../../services/api";
+import { callLogin, callRegister } from "../../services/api";
 const LoginPage = () =>{
-
+    const navigate = useNavigate();
     const [isSubmit, setIsSubmit] = useState(false);
-    const onFinish = () =>{
-alert("me")
+    const onFinish = async(values) =>{
+        const{username, password} = values;
+        setIsSubmit(true);
+        const res = await callLogin(username,password,5000);
+        setIsSubmit(false);
+        if(res.data){
+            notification.success({
+                message: "Đăng nhập thành công !"
+            });
+           navigate("/book");
+        }else{
+            notification.error({
+                message: "Đăng nhập bị lỗi!",
+                description: JSON.stringify(res.message)
+            })
+        }
     }
     return (
         <>
@@ -31,7 +45,7 @@ alert("me")
                     <Form.Item
                       labelCol={{ span: 24 }}
                       label="Email :"
-                      name="email"
+                      name="username"
                       rules={[
                         { required: true, message: "email không được để trống !" },
                       ]}
