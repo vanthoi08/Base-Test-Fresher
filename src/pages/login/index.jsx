@@ -13,6 +13,7 @@ const LoginPage = () =>{
         const res = await callLogin(username,password,5000);
         setIsSubmit(false);
         if(res.data){
+            localStorage.setItem('access_token',res.data.access_token);
             notification.success({
                 message: "Đăng nhập thành công !"
             });
