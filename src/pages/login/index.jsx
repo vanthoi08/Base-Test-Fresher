@@ -22,7 +22,7 @@ const LoginPage = () =>{
             notification.success({
                 message: "Đăng nhập thành công !"
             });
-           navigate("/book");
+           navigate("/");
         }else{
             notification.error({
                 message: "Đăng nhập bị lỗi!",
